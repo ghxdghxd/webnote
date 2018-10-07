@@ -1,8 +1,3 @@
-//Config
-var applicationID = 'IPQCQ37UM5';
-var apiKey = '4dfa5ff793685cabbf9d22acf47a7f5b';
-var indexName = 'webNotes_search';
-
 // Algolia client. Mandatory to instantiate the Helper.
 var algolia = algoliasearch(applicationID, apiKey);
 
@@ -62,22 +57,22 @@ function renderHits($hits, results) {
 }
 
 function renderFacets($facets, results) {
-  var facets1 = results.disjunctiveFacets.map(function(facet) {
+  var facets1 = results.disjunctiveFacets.map(function (facet) {
     var name = facet.name;
     var header = '<li class="title">' + name + '<span class="icon">+</span></li>';
     var facetValues = results.getFacetValues(name);
-    var facetsValuesList = $.map(facetValues, function(facetValue) {
+    var facetsValuesList = $.map(facetValues, function (facetValue) {
       var facetValueClass = facetValue.isRefined ? 'active' : '';
       var valueAndCount = '<a data-attribute="' + name + '" data-value="' + facetValue.name + '" href="#">' + facetValue.name + ' (' + facetValue.count + ')' + '</a>';
       return '<li class="' + facetValueClass + '">' + valueAndCount + '</li>';
     })
     return '<div class="separator"></div><div class="menu-segment"><ul class="labels">' + header + facetsValuesList.join('') + '</ul></div>';
   });
-  var facets2 = results.facets.map(function(facet) {
+  var facets2 = results.facets.map(function (facet) {
     var name = facet.name;
     var header = '<li class="title">' + name + '<span class="icon">+</span></li>';
     var facetValues = results.getFacetValues(name);
-    var facetsValuesList = $.map(facetValues, function(facetValue) {
+    var facetsValuesList = $.map(facetValues, function (facetValue) {
       var facetValueClass = facetValue.isRefined ? 'active' : '';
       var valueAndCount = '<a data-attribute="' + name + '" data-value="' + facetValue.name + '" href="#">' + facetValue.name + ' (' + facetValue.count + ')' + '</a>';
       return '<li class="' + facetValueClass + '">' + valueAndCount + '</li>';

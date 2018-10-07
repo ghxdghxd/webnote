@@ -9,22 +9,41 @@ body {
   color: #888;
 }
 h1 {
-  font-size: 50px;
+  font-size: 30px;
   line-height: 40px;
   font-weight: 100;
+  margin-bottom: 0.5em;
+}
+h2 {
+  font-size: 24px;
+  line-height: 40px;
+  font-weight: 100;
+  margin-bottom: 0.5em;
+}
+h3 {
+  font-size: 18px;
+  line-height: 40px;
+  font-weight: 100;
+  margin-bottom: 0.5em;
 }
 p {
   margin-bottom: 1em;
 }
 a {
-  color: #61C7B3;
+  /* color: #61C7B3; */
   text-decoration: none;
   transition-duration: 0.3s;
 }
+a:before{
+  padding-right: 0.3em;
+}
 a:hover {
-  color: #338f7d;
+  /* color: #338f7d; */
   transition-duration: 0.05s;
   text-decoration: none;
+}
+img {
+  width: 100%;
 }
 .circle-icon {
   width: 30px;
@@ -354,11 +373,13 @@ a:hover {
   color: #333;
   border-color: #d6d6d6;
   /* width: 150%; */
+  background: beige;
 }
 #main .header .search-box input:focus ~ .icon {
   opacity: 1;
   z-index: 3;
-  color: #61C7B3;
+  /* color: #61C7B3; */
+  color: #428bca;
 }
 #main .header .search-box .icon {
   position: absolute;
@@ -450,7 +471,8 @@ a:hover {
 }
 #main .message-list li.active,
 #main .message-list li.active:hover {
-  box-shadow: inset 5px 0 0 #61C7B3;
+  /* box-shadow: inset 5px 0 0 #61C7B3; */
+  box-shadow: inset 5px 0 0 #428bca;
 }
 #main .message-list li.unread {
   font-weight: 600;

@@ -43,7 +43,7 @@
 }
 .solar-syst div:not(.sun) {
   /* border: 1px solid rgba(102, 166, 229, 0.12); */
-  border: 1px solid rgba(102, 166, 229, 0.5);
+  border: 1px solid rgba(102, 166, 229, 0.3);
 }
 .solar-syst div:not(.sun):before {
   left: 50%;

@@ -12,7 +12,7 @@
     </div>
     <div class="right">
       {% for tag in article.tags %}
-      <a href="/{{ tag.url }}">{{ tag }}</a>
+      <a class="fa fa-tag" href="/{{ tag.url }}">{{ tag }}</a>
       {% endfor %}
     </div>
   </div>
@@ -23,11 +23,11 @@
         <div class="message">
           {{ article.content }}
         </div>
-        <div class="tool-box">
+        <!-- <div class="tool-box">
           <a href="#" class="circle-icon small glyphicon glyphicon-share-alt"></a>
           <a href="#" class="circle-icon small red-hover glyphicon glyphicon-remove"></a>
           <a href="#" class="circle-icon small red-hover glyphicon glyphicon-flag"></a>
-        </div>
+        </div> -->
     </ul>
   </div>
 </div>
