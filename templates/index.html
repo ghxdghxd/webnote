@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block item %}
+{% for article in articles %}
+<li>
+  <a class="title" href="{{ article.url }}">{{ article.title}}</a>
+  <div class="subject">
+    {{ article.summary}}
+  </div>
+  <div class="col col-2">
+    <div class="date">{{ article.date|strftime('%Y/%m/%d') }}</div>
+  </div>
+</li>
+{% endfor %}
+{% endblock item %}

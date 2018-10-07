@@ -1,0 +1,47 @@
+<div class="header">
+  <h1 class="page-title">
+    <a class="icon circle-icon glyphicon glyphicon-chevron-left trigger-message-close"></a>
+    {{ article.title }}
+  </h1>
+  <div class="details">
+    <div class="left">
+      {{ article.date|strftime('%b %d, %Y') }}
+      {% if category %}
+      <span> | </span> <a href="/{{ category.url }}">{{ category }}</a>
+      {% endif %}
+    </div>
+    <div class="right">
+      {% for tag in article.tags %}
+      <a href="/{{ tag.url }}">{{ tag }}</a>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+<div id="message-nano-wrapper" class="nano">
+  <div class="nano-content">
+    <ul class="message-container">
+        <div class="message">
+          {{ article.content }}
+        </div>
+        <div class="tool-box">
+          <a href="#" class="circle-icon small glyphicon glyphicon-share-alt"></a>
+          <a href="#" class="circle-icon small red-hover glyphicon glyphicon-remove"></a>
+          <a href="#" class="circle-icon small red-hover glyphicon glyphicon-flag"></a>
+        </div>
+    </ul>
+  </div>
+</div>
+
+<script>
+  $('.nano').overlayScrollbars({
+    scrollbars: {
+      autoHide: "leave",
+    }
+  });
+  $('.trigger-message-close').on('click', function () {
+    $('body').removeClass('show-message');
+    $('#main .message-list li').removeClass('active');
+    messageIsOpen = false;
+    $('body').removeClass('show-main-overlay');
+  });
+</script>
