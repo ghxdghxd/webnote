@@ -14,8 +14,11 @@ helper.on("result", searchCallback);
 var $inputfield = $("#searchBox");
 var $hits = $('#hits');
 var $facets = $('#facets');
+var $disjunctiveFacets = $('#disjunctiveFacets');
+var $currentRefinements = $('#currentRefinements')
 
 $facets.on('click', handleFacetClick);
+$disjunctiveFacets.on('click', handleFacetClick);
 
 // Trigger a first search, so that we have a page with results
 // from the start.
@@ -39,6 +42,8 @@ function searchCallback(results) {
   // Hits/results rendering
   renderHits($hits, results);
   renderFacets($facets, results);
+  renderDisjunctiveFacets($disjunctiveFacets, results);
+  renderCurrentRefinements($currentRefinements, results);
 }
 
 function renderHits($hits, results) {
@@ -57,7 +62,7 @@ function renderHits($hits, results) {
 }
 
 function renderFacets($facets, results) {
-  var facets1 = results.disjunctiveFacets.map(function (facet) {
+  var facets = results.facets.map(function (facet) {
     var name = facet.name;
     var header = '<li class="title">' + name + '<span class="icon">+</span></li>';
     var facetValues = results.getFacetValues(name);
@@ -68,7 +73,11 @@ function renderFacets($facets, results) {
     })
     return '<div class="separator"></div><div class="menu-segment"><ul class="labels">' + header + facetsValuesList.join('') + '</ul></div>';
   });
-  var facets2 = results.facets.map(function (facet) {
+  $facets.html(facets.join(''));
+}
+
+function renderDisjunctiveFacets($disjunctiveFacets, results) {
+  var disjunctiveFacets = results.disjunctiveFacets.map(function (facet) {
     var name = facet.name;
     var header = '<li class="title">' + name + '<span class="icon">+</span></li>';
     var facetValues = results.getFacetValues(name);
@@ -79,8 +88,16 @@ function renderFacets($facets, results) {
     })
     return '<div class="separator"></div><div class="menu-segment"><ul class="labels">' + header + facetsValuesList.join('') + '</ul></div>';
   });
-  // var facets = facets1.join('') + facets2.join('')
-  $facets.html(facets2.join(''));
+  $disjunctiveFacets.html(disjunctiveFacets.join(''));
+}
+
+function renderCurrentRefinements($currentRefinements, results) {
+  var currentRefinements = results.getRefinements().map(function (refinement) {
+    var name = refinement.name;
+    var attributeName = refinement.attributeName
+    return '<span class="' + attributeName + '">' + name + '</span>';
+  });
+  $currentRefinements.html(currentRefinements.join(''));
 }
 
 function handleFacetClick(e) {

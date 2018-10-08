@@ -273,7 +273,7 @@ img {
   transition-duration: 0.5s;
 }
 #main .header {
-  padding: 50px 60px;
+  padding: 50px 50px;
   border-bottom: 1px solid #EFEFEF;
   overflow: hidden;
 }
@@ -567,7 +567,7 @@ img {
 }
 #main .message-list li .col-2 .date {
   right: 0;
-  width: 200px;
+  /* width: 200px; */
   padding-left: 80px;
 }
 #main .load-more-link {
@@ -782,6 +782,14 @@ img {
   #main .overlay {
     display: none;
   }
+  #main .message-list li .col-2 .date {
+    width: 200px;
+  }
+}
+@media only screen and (min-width: 1024px) {
+  #main .message-list li .col-2 .date {
+    width: 200px;
+  }
 }
 @media only screen and (max-width: 1500px) {
   .show-message #main {
@@ -815,8 +823,8 @@ img {
     margin-right: 0;
   }
   .show-message #message {
-    left: 20%;
-    width: 80%;
+    left: 5%;
+    width: 95%;
     box-shadow: none;
   }
 }
@@ -860,6 +868,12 @@ img {
   }
   #main .message-list li .col-2 .subject {
     display: none;
+  }
+  #message {
+    padding:50px 13px;
+  }
+  #message .message-container {
+    padding: 13px;
   }
 }
 /**
@@ -934,60 +948,3 @@ img {
   /* Target only IE7 and IE8 with this hack */
   opacity: 0.99;
 }
-
-
-/* Logo Style */
-/* 
-.site-name {
-    color: white;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.site-logo {
-    padding: 1.5em 0;
-    overflow: hidden;
-    color: rgb(176, 202, 219);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.site-logo .user-pic {
-    float: left;
-    width: 60px;
-    padding: 2px;
-    border-radius: 12px;
-    margin-right: 15px;
-    overflow: hidden;
-}
-
-.site-logo .user-pic img {
-    object-fit: cover;
-    height: 100%;
-    width: 100%;
-}
-
-.site-logo .user-info {
-    float: left;
-}
-
-.site-logo .user-info>span {
-    display: block;
-}
-
-.site-logo .user-info .user-role {
-    font-size: 12px;
-}
-
-.site-logo .user-info .user-status {
-    font-size: 11px;
-    margin-top: 4px;
-}
-
-.site-logo .user-info .user-status i {
-    font-size: 8px;
-    margin-right: 4px;
-    color: #5cb85c;
-} */

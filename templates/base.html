@@ -14,9 +14,6 @@
 <link rel="stylesheet" href="/{{ THEME_STATIC_DIR }}/css/solar_system.css">
 <link rel="stylesheet" href="/{{ THEME_STATIC_DIR }}/css/slideout.css">
 <link rel="stylesheet" href="/{{ THEME_STATIC_DIR }}/css/OverlayScrollbars.css">
-<!-- algolia search -->
-<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.10.2/dist/instantsearch.min.css">
-<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.10.2/dist/instantsearch-theme-algolia.min.css">
 <!-- highlight code-->
 <link href="/{{ THEME_STATIC_DIR }}/css/pygment.css" rel="stylesheet">
 </head>
@@ -42,6 +39,8 @@
       </ul>
     </menu> -->
     <!-- <div class="separator"></div> -->
+    <div id="disjunctiveFacets">
+    </div>
     <div id="facets">
     </div>
     <!-- <div class="menu-segment">
@@ -85,6 +84,7 @@
       </a>
       {{SITENAME}}
     </h1>
+    <div id="currentRefinements"></div>
   </header>
   <div id="main-nano-wrapper" class="nano">
     <div class="nano-content">
@@ -106,13 +106,13 @@ var apiKey = "{{ALGOLIA_ADMIN_API_KEY}}";
 var indexName = "{{ALGOLIA_INDEX_NAME}}";
 </script>
 
-<script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+<script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/prefixfree/1.0.7/prefixfree.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/slideout/1.0.1/slideout.js"></script>
 <script src="/{{ THEME_STATIC_DIR }}/js/OverlayScrollbars.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/algoliasearch@3/dist/algoliasearchLite.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/algoliasearch-helper@2.26.1/dist/algoliasearch.helper.min.js"></script>
-<script src="/{{ THEME_STATIC_DIR }}/js/algolia.js"></script>
+<script src="/{{ THEME_STATIC_DIR }}/js/algolia_helper.js"></script>
 <script src="/{{ THEME_STATIC_DIR }}/js/index.js"></script>
 
 </body>
