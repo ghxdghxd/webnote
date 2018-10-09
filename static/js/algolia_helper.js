@@ -7,6 +7,11 @@ var helper = algoliasearchHelper(algolia, indexName, {
   disjunctiveFacets: ['category'],
 });
 
+var name_json = { 
+  "tags": "标签", 
+  "category": "分类"
+}
+
 // Bind the result event to a function that will update the results
 helper.on("result", searchCallback);
 
@@ -19,6 +24,7 @@ var $currentRefinements = $('#currentRefinements')
 
 $facets.on('click', handleFacetClick);
 $disjunctiveFacets.on('click', handleFacetClick);
+$currentRefinements.on('click', handleFacetClick);
 
 // Trigger a first search, so that we have a page with results
 // from the start.
@@ -95,8 +101,19 @@ function renderCurrentRefinements($currentRefinements, results) {
   var currentRefinements = results.getRefinements().map(function (refinement) {
     var name = refinement.name;
     var attributeName = refinement.attributeName
-    return '<span class="' + attributeName + '">' + name + '</span>';
+    if(attributeName == "category"){
+      faName = 'folder'
+    }
+    if (attributeName == "tags") {
+      faName = 'tag'
+    }
+    temp = '<a class="refine" data-attribute="' + attributeName + '" data-value="' + name + 
+      '" href="#"><i class="fa fa-' + faName + ' fa-xs fa-fw"></i>' + name + ' <i class="fa fa-xs fa-times"></i></a>';
+    return temp
   });
+  clearRefinements = '<a class="clearRefinements" href="#">' + 
+    '<i class="fa fa-times-circle"  data-attribute="all" data-value="all"></i></a>';
+  if(currentRefinements.length > 0) currentRefinements.push(clearRefinements);
   $currentRefinements.html(currentRefinements.join(''));
 }
 
@@ -105,10 +122,15 @@ function handleFacetClick(e) {
   var target = e.target;
   var attribute = target.dataset.attribute;
   var value = target.dataset.value;
+  console.log(target);
   // Because we are listening in the parent, the user might click where there is no data
   if (!attribute || !value) return;
   // The toggleRefine method works for disjunctive facets as well
-  helper.toggleRefine(attribute, value).search();
+  if (attribute == "all" && value == "all"){
+    helper.clearRefinements().search();
+  }else{
+    helper.toggleRefine(attribute, value).search();
+  }
 }
 
 function timetrans(date) {
