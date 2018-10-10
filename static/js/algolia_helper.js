@@ -39,6 +39,7 @@ $inputfield.keyup(function (e) {
 
 // Result event callback
 function searchCallback(results) {
+  renderCurrentRefinements($currentRefinements, results);
   if (results.hits.length === 0) {
     // If there is no result we display a friendly message
     // instead of an empty page.
@@ -49,7 +50,7 @@ function searchCallback(results) {
   renderHits($hits, results);
   renderFacets($facets, results);
   renderDisjunctiveFacets($disjunctiveFacets, results);
-  renderCurrentRefinements($currentRefinements, results);
+  // renderCurrentRefinements($inputfield, $currentRefinements, results);
 }
 
 function renderHits($hits, results) {
@@ -113,7 +114,7 @@ function renderCurrentRefinements($currentRefinements, results) {
   });
   clearRefinements = '<a class="clearRefinements" href="#">' + 
     '<i class="fa fa-times-circle"  data-attribute="all" data-value="all"></i></a>';
-  if(currentRefinements.length > 0) currentRefinements.push(clearRefinements);
+  if ($inputfield.val().length > 0 || currentRefinements.length > 0) currentRefinements.push(clearRefinements);
   $currentRefinements.html(currentRefinements.join(''));
 }
 
@@ -122,12 +123,13 @@ function handleFacetClick(e) {
   var target = e.target;
   var attribute = target.dataset.attribute;
   var value = target.dataset.value;
-  console.log(target);
+  // console.log(target);
   // Because we are listening in the parent, the user might click where there is no data
   if (!attribute || !value) return;
   // The toggleRefine method works for disjunctive facets as well
   if (attribute == "all" && value == "all"){
-    helper.clearRefinements().search();
+    helper.setQuery().clearRefinements().search();
+    document.getElementById("searchBox").value = ""
   }else{
     helper.toggleRefine(attribute, value).search();
   }
