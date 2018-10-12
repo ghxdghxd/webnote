@@ -834,16 +834,17 @@ img {
   #main .header .search-box {
     float: none;
     width: 100%;
-    margin-bottom: -110px;
-    margin-top: 70px;
+    /* margin-bottom: -110px; */
+    /* margin-top: 70px; */
+    margin-bottom: 10px;
   }
   #main .header .search-box input,
   #main .header .search-box input:focus {
     width: 100%;
   }
-  #main .header .page-title {
+  /* #main .header .page-title {
     margin-bottom: 50px;
-  }
+  } */
   #main #main-nano-wrapper {
     position: absolute;
     /* top: 260px; */
