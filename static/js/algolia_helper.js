@@ -71,14 +71,14 @@ function renderHits($hits, results) {
 function renderFacets($facets, results) {
   var facets = results.facets.map(function (facet) {
     var name = facet.name;
-    var header = '<li class="title">' + name + '<span class="icon">+</span></li>';
+    var header = '<li class="title" style="padding: 0 25px 0 35px;display: block;">' + name_json[name] + '<span class="icon fa fa-tags"></span></li>';
     var facetValues = results.getFacetValues(name);
     var facetsValuesList = $.map(facetValues, function (facetValue) {
       var facetValueClass = facetValue.isRefined ? 'active' : '';
-      var valueAndCount = '<a data-attribute="' + name + '" data-value="' + facetValue.name + '" href="#">' + facetValue.name + ' (' + facetValue.count + ')' + '</a>';
+      var valueAndCount = '<a data-attribute="' + name + '" data-value="' + facetValue.name + '" href="#">' + facetValue.name + '<sup>' + facetValue.count + '</sup>' + '</a>';
       return '<li class="' + facetValueClass + '">' + valueAndCount + '</li>';
     })
-    return '<div class="separator"></div><div class="menu-segment"><ul class="labels">' + header + facetsValuesList.join('') + '</ul></div>';
+    return '<div class="separator"></div><div class="menu-segment" style="padding:0 25px 0 35px;">' + header + '<ul class="tag-cloud">' + facetsValuesList.join('') + '</ul></div>';
   });
   $facets.html(facets.join(''));
 }
@@ -86,7 +86,7 @@ function renderFacets($facets, results) {
 function renderDisjunctiveFacets($disjunctiveFacets, results) {
   var disjunctiveFacets = results.disjunctiveFacets.map(function (facet) {
     var name = facet.name;
-    var header = '<li class="title">' + name + '<span class="icon">+</span></li>';
+    var header = '<li class="title">' + name_json[name] + '<span class="icon fa fa-folder"></span></li>';
     var facetValues = results.getFacetValues(name);
     var facetsValuesList = $.map(facetValues, function (facetValue) {
       var facetValueClass = facetValue.isRefined ? 'active' : '';
@@ -123,7 +123,7 @@ function handleFacetClick(e) {
   var target = e.target;
   var attribute = target.dataset.attribute;
   var value = target.dataset.value;
-  // console.log(target);
+  // console.log(value);
   // Because we are listening in the parent, the user might click where there is no data
   if (!attribute || !value) return;
   // The toggleRefine method works for disjunctive facets as well
