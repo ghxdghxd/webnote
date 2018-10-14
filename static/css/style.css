@@ -998,18 +998,20 @@ table td {
 #sidebar .menu-segment .tag-cloud {
   padding: 15px 0 10px 0;
   text-align: center;
+  font-size: 10px;
 }
 #sidebar .menu-segment .tag-cloud li {
   display: -webkit-inline-box;
-  padding: 0 10px 0 0;
+  padding: 0 5px 0 0;
 }
 
 #sidebar .menu-segment .tag-cloud li a {
   display: block;
-  padding: 10px 0px 10px 0px;
+  padding: 2px 0px 3px 0px;
   margin: 0;
+  
 }
 
 #sidebar .menu-segment .tag-cloud li a:hover {
-  background: #21262d;
+  color: white;
 }
