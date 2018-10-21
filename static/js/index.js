@@ -79,6 +79,20 @@ jQuery(document).ready(function ($) {
     // }
   });
 
+  $('body').on('click', '#message a', function (e) {
+    e.preventDefault();
+    var url = this.getAttribute("href");
+    if (messageIsOpen) {
+      cols.hideMessage();
+      setTimeout(function () {
+        cols.showMessage(url);
+      }, 300);
+    } else {
+      cols.showMessage(url);
+    }
+    cols.showOverlay();
+  });
+
   // This will prevent click from triggering twice when clicking checkbox/label
 
   $('input[type=checkbox]').on('click', function (e) {
